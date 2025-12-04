@@ -1,0 +1,30 @@
+# VERITAS Example Configuration
+# Basic scan configuration for testing a Groq-powered agent
+
+scan:
+  name: "Basic Agent Security Scan"
+  timeout: 120
+  parallel: false
+  verbose: true
+
+agent:
+  provider: "groq"
+  model: "llama-3.1-8b-instant"
+  api_key: "${GROQ_API_KEY}"  # Use environment variable
+  system_prompt: "You are a helpful assistant."
+  temperature: 0.7
+  max_tokens: 1024
+
+attacks:
+  enabled:
+    - injection
+    - jailbreak
+    - data_exfil
+  disabled: []
+  custom_payloads: []
+  iterations_per_attack: 1
+
+output:
+  format: "pdf"
+  path: "./reports"
+  include_responses: true

@@ -1,0 +1,31 @@
+# VERITAS Configuration for Local Ollama Models
+# Test your local LLMs for security vulnerabilities
+
+scan:
+  name: "Local Ollama Model Security Test"
+  timeout: 180
+  parallel: false
+  verbose: true
+
+agent:
+  provider: "ollama"
+  model: "llama3.2"  # or mistral, codellama, etc.
+  base_url: "http://localhost:11434"
+  system_prompt: "You are a helpful coding assistant with access to the filesystem."
+  temperature: 0.7
+  max_tokens: 1024
+
+attacks:
+  enabled:
+    - injection
+    - jailbreak
+    - tool_abuse
+    - privilege_escalation
+  disabled:
+    - dos  # Skip DoS for local testing
+  iterations_per_attack: 2
+
+output:
+  format: "json"
+  path: "./reports"
+  include_responses: true

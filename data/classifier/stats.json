@@ -1,0 +1,29 @@
+{
+  "total": 440,
+  "attacks": 220,
+  "safe": 220,
+  "by_attack_type": {
+    "none": 220,
+    "tool_abuse": 33,
+    "prompt_injection": 27,
+    "goal_hijack": 19,
+    "jailbreak": 30,
+    "dos": 18,
+    "privilege_escalation": 19,
+    "data_exfil": 21,
+    "memory_poison": 22,
+    "multi_turn": 19,
+    "context_override": 12
+  },
+  "by_source": {
+    "safe": 155,
+    "payload_db": 152,
+    "augmented": 133
+  },
+  "attack_ratio": 0.5,
+  "splits": {
+    "train": 352,
+    "val": 44,
+    "test": 44
+  }
+}

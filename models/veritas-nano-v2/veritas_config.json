@@ -1,0 +1,7 @@
+{
+  "model_name": "distilbert-base-uncased",
+  "mode": "binary",
+  "num_labels": 2,
+  "max_length": 256,
+  "attack_types": null
+}

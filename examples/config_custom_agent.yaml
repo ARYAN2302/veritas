@@ -1,0 +1,40 @@
+# VERITAS Custom Agent Configuration
+# For testing your own custom agent implementation
+
+scan:
+  name: "Custom Agent Security Test"
+  timeout: 180
+  parallel: false
+  verbose: true
+
+agent:
+  provider: "custom"
+  # Custom function path - must be importable
+  # The function must accept (prompt: str) and return str
+  custom_function: "my_agent.invoke"
+  # Or use an HTTP endpoint
+  endpoint: "http://localhost:8000/chat"
+  # HTTP settings
+  http_method: "POST"
+  request_template:
+    messages:
+      - role: "user"
+        content: "{prompt}"
+  response_path: "choices.0.message.content"  # JSONPath to extract response
+  headers:
+    Content-Type: "application/json"
+    Authorization: "Bearer ${MY_API_KEY}"
+
+attacks:
+  enabled:
+    - injection
+    - jailbreak
+    - tool_abuse
+    - memory_poison
+    - goal_hijack
+  iterations_per_attack: 2
+
+output:
+  format: "both"
+  path: "./reports"
+  include_responses: true
